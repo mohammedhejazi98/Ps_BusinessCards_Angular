@@ -1,9 +1,7 @@
-import { BlogsModule } from './pages/blogs/blogs.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
-import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BusinessCardComponent } from './pages/business-card/business-card.component';
 
 const routes: Routes = [
   {
@@ -12,14 +10,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/blogs/blogs-list',
+        redirectTo: '/business-card/business-card-list',
         pathMatch: 'full',
       },
       {
 
-        path: 'blogs',
+        path: 'business-card',
         loadChildren: () =>
-          import('./pages/blogs/blogs.module').then((m) => m.BlogsModule),
+          import('./pages/business-card/business-card.module').then((m) => m.BusinessCardModule),
 
       },
     ],

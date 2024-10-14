@@ -13,6 +13,7 @@
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
+  background-color: white;
 }
 
 table {
@@ -27,7 +28,6 @@ table {
   left: 0;
   bottom: 56px;
   right: 0;
-  background: rgba(0, 0, 0, 0.15);
   z-index: 1;
   display: flex;
   align-items: center;

@@ -3,11 +3,11 @@ import { NavItem } from './nav-item/nav-item';
 export const navItems: NavItem[] = [
 
   {
-    navCap: 'Blogs',
+    navCap: 'Business Cards',
   },
   {
-    displayName: 'Blogs',
+    displayName: 'Business Cards',
     iconName: 'layout-navbar-expand',
-    route: '/blogs/blogs-list',
+    route: '/business-card/business-card-list',
   },
 ];

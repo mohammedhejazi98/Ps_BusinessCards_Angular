@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="userForm">
+    <div>
+
+      <mat-form-field style="margin-top:5px ;" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput placeholder="Name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="email">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" matInput placeholder="Phone">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender" placeholder="gender">
+          <mat-option *ngFor="let g of gender " [value]="g.name">
+            {{g.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Date Of Birth</mat-label>
+        <input formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <textarea formControlName="address" matInput></textarea>
+      </mat-form-field>
+
+    </div>
+    <img mat-card-sm-image style="width:100px;max-height: 100px; border-radius: 35%;"
+      [src]="imageSrc || 'https://www.w3schools.com/howto/img_avatar.png'" alt="avatar">
+    {{imageSrc?fileName : "No file uploaded yet."}}
+
+    <div style="margin-top: 20px;" class="file-upload">
+      <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+
+      <button mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+
+      </button>
+      <button style="margin-left: 8px;" [disabled]="!imageSrc" mat-mini-fab color="primary" class="remove-btn"
+        (click)="onCancel()">
+        <mat-icon>delete</mat-icon>
+
+      </button>
+
+    </div>
+
+    <div *ngIf="loaded" mat-dialog-action [align]="'end'">
+      <button (click)="addUser()" mat-raised-button color="warn">{{actionBtn}}</button>
+      <button mat-raised-button style="margin-left: 8px;" color="primary" mat-dialog-close>close</button>
+    </div>
+
+  </form>
+</div>
