@@ -1,0 +1,21 @@
+<div class="custom-dropzone" ngx-dropzone [maxFileSize]="1000000"
+  [accept]="'image/*,text/xml,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" [disabled]="disabled"
+  [multiple]="false" (change)="onSelect($event)">
+  <ngx-dropzone-label>
+    <h5>Drag and drop file or press to upload</h5>
+    <h5>(png,xml,xls)</h5>
+    <svg xmlns="http://www.w3.org/2000/svg" width="63" height="64" viewBox="0 0 63 64">
+      <!-- SVG content here -->
+    </svg>
+  </ngx-dropzone-label>
+  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" multiple="false"
+    [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} </ngx-dropzone-label>
+  </ngx-dropzone-image-preview>
+
+</div>
+<!-- Import button -->
+<div style="display: flex; justify-content: center; gap: 10px; margin: 10px;">
+  <button *ngIf="disabled" mat-raised-button color="warn" (click)="import()">Import</button>
+  <button *ngIf="disabled" mat-raised-button color="warn" (click)="remove()">Delete</button>
+</div>

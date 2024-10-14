@@ -18,10 +18,12 @@ import { BusinessCardListComponent } from './business-card-list/business-card-li
 import { BusinessCardComponent } from './business-card.component';
 import { BusinessCardRoutingModule } from './business-card-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
-  declarations: [BusinessCardComponent, BusinessCardListComponent, DialogComponent],
+  declarations: [BusinessCardComponent, BusinessCardListComponent, DialogComponent, FileUploadComponent],
   imports: [
     CommonModule,
     BusinessCardRoutingModule,
@@ -40,7 +42,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatInputModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxDropzoneModule
   ]
 })
 export class BusinessCardModule { }

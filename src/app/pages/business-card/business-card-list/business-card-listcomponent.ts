@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DialogComponent } from '../dialog/dialog.component';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 
 export class BusinessCardListComponent implements OnInit {
-  title = 'Users';
+  title = 'Business Cards';
   user: any
   loaded: boolean = true
   displayedColumns: string[] = ['name', 'email', 'gender', 'phone', 'dateOfBirth', 'action'];
@@ -40,6 +41,16 @@ export class BusinessCardListComponent implements OnInit {
       height: '70%',
     }).afterClosed().subscribe(val => {
       if (val == "Save") { this.getBusinessCards() }
+    });
+
+  }
+  import() {
+    this.dialog.open(FileUploadComponent, {
+      width: '70vh',
+      maxWidth: 'xl',
+      height: '55%',
+    }).afterClosed().subscribe(() => {
+      this.getBusinessCards()
     });
 
   }
