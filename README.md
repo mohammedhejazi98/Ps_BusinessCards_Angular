@@ -1,27 +1,85 @@
-# TestApp
+# Ps_BusinessCards_Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.1.
+## Table of Contents
 
-## Development server
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Introduction
 
-## Code scaffolding
+Ps_BusinessCards_Angular is a web application designed to create, manage, and share digital business cards. The application allows users to create personalized business cards that can be easily shared through a unique URL or QR code. This project is built using Angular framework.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Create Business Cards**: Users can create and customize business cards with their personal and professional details.
+- **Manage Cards**: Easy management of created business cards.
+- **Share Cards**: Share business cards via unique URL or QR code.
+- **Responsive Design**: The application is mobile-friendly and designed to work on different screen sizes.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Technologies Used
 
-## Running unit tests
+- **Frontend**: Angular, TypeScript, HTML5, SCSS
+- **Backend**: RESTful API (to be integrated with a backend service)
+- **Database**: Not included in this repository, it is meant to be connected with an external database
+- **Version Control**: Git
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+Before you begin, ensure you have met the following requirements:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- You have installed the latest version of `Node.js` and `npm`.
+- You have installed `Angular CLI`.
 
-## Further help
+To install Ps_BusinessCards_Angular, follow these steps:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mohammedhejazi98/Ps_BusinessCards_Angular.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Ps_BusinessCards_Angular
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+To run the application locally, follow these steps:
+
+1. Start the Angular development server:
+   ```bash
+   ng serve
+   ```
+2. Open your web browser and navigate to `http://localhost:4200`.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Make your changes.
+4. Commit your changes:
+   ```bash
+   git commit -m "Description of your changes"
+   ```
+5. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+6. Create a pull request detailing your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

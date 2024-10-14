@@ -2,22 +2,13 @@ import { Component, Inject, Input, OnInit } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { finalize, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { BusinessCardsService } from "src/app/services/businessCards.service";
 import { DatePipe } from '@angular/common';
-import { HttpEventType } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
+import { BusinessCard } from "src/app/models/BusinessCard ";
 
-export interface BusinessCards {
-  id: number; // Unique identifier for the country
-  name: string; // ISO country code
-  email: string; // URL or path to the country's flag image
-  gender: string;
-  phone: string;
-  photoBase64: string | null;
-  dateOfBirth: string;
-  address: string;
-}
+
 
 @Component({
   selector: 'app-users-Dialog',
@@ -58,7 +49,7 @@ export class DialogComponent implements OnInit {
   constructor(private formbuider: UntypedFormBuilder
     , private businessCardsService: BusinessCardsService
     , private dialogRef: MatDialogRef<DialogComponent>
-    , @Inject(MAT_DIALOG_DATA) public editData: BusinessCards, private sanitizer: DomSanitizer) {
+    , @Inject(MAT_DIALOG_DATA) public editData: BusinessCard, private sanitizer: DomSanitizer) {
 
   }
   disableTap: boolean = false;
@@ -97,9 +88,9 @@ export class DialogComponent implements OnInit {
   addUser() {
 
     if (!this.editData) {
-      const bsCard: BusinessCards = this.userForm.getRawValue();
+      const bsCard: BusinessCard = this.userForm.getRawValue();
       const day = new DatePipe('en-US').transform(bsCard.dateOfBirth, 'yyyy-MM-dd')?.toString();
-      debugger
+
       const formData = new FormData();
       formData.append('Email', bsCard.email)
       formData.append('Name', bsCard.name)
@@ -124,13 +115,13 @@ export class DialogComponent implements OnInit {
   }
 
   updateUser() {
-    const bsCard: BusinessCards = this.userForm.getRawValue();
+    const bsCard: BusinessCard = this.userForm.getRawValue();
     const day = new DatePipe('en-US').transform(bsCard.dateOfBirth, 'yyyy-MM-dd')?.toString();
-    debugger
+
     bsCard.dateOfBirth = day!;
     bsCard.photoBase64 = this.imageBase64 || null;
     bsCard.id = this.editData.id!;
-    debugger
+
     this.businessCardsService.updateBusinessCard(bsCard, this.editData.id).subscribe({
       next: (res) => {
         this.userForm.reset();

@@ -6,7 +6,6 @@ import { BusinessCardsService } from 'src/app/services/businessCards.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs';
-import { MatIconRegistry } from '@angular/material/icon';
 import { DialogComponent } from '../dialog/dialog.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 
@@ -46,7 +45,7 @@ export class BusinessCardListComponent implements OnInit {
   }
   import() {
     this.dialog.open(FileUploadComponent, {
-      width: '70vh',
+      width: '150vh',
       maxWidth: 'xl',
       height: '55%',
     }).afterClosed().subscribe(() => {

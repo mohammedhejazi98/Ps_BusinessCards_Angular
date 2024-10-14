@@ -11,7 +11,7 @@
         (click)="exportToXML()">Export To XML</button>
     </div>
 
-    <div style="background-color: rgb(68, 67, 67);">
+    <div>
       <mat-form-field [ngStyle]="{'display': loaded ? '' : 'none'}">
         <mat-label style="margin-left: 10px;">Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="  Ex. omar, example@example.com" #input>
@@ -70,7 +70,7 @@
 
         <!-- Row shown when there is no matching data -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td *ngIf="input.value" class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
 
