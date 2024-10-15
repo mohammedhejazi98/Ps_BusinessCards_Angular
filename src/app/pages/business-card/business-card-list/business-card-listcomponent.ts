@@ -8,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs';
 import { DialogComponent } from '../dialog/dialog.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -27,7 +29,19 @@ export class BusinessCardListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private businessCardsService: BusinessCardsService) {
+  constructor(private dialog: MatDialog, private businessCardsService: BusinessCardsService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      "excel",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/images/svgs/excel.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "xml",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("/assets/images/svgs/xml-svgrepo-com.svg")
+    );
 
   }
   ngOnInit(): void {
@@ -38,6 +52,8 @@ export class BusinessCardListComponent implements OnInit {
       width: '70vh',
       maxWidth: 'xl',
       height: '70%',
+      id: '0'
+
     }).afterClosed().subscribe(val => {
       if (val == "Save") { this.getBusinessCards() }
     });
@@ -45,9 +61,9 @@ export class BusinessCardListComponent implements OnInit {
   }
   import() {
     this.dialog.open(FileUploadComponent, {
-      width: '150vh',
+      width: '70%',
       maxWidth: 'xl',
-      height: '55%',
+      height: '90%',
     }).afterClosed().subscribe(() => {
       this.getBusinessCards()
     });
@@ -76,7 +92,8 @@ export class BusinessCardListComponent implements OnInit {
             width: '70vh',
             maxWidth: 'xl',
             height: '70%',
-            data: data
+            data: data,
+            id: '0'
           }).afterClosed().subscribe(val => {
             if (val == "Update") {
               this.getBusinessCards();  // Refresh the users
@@ -96,18 +113,27 @@ export class BusinessCardListComponent implements OnInit {
     this.getBusinessCard(row.id)
   }
   deleteBusinesscard(row: any) {
-
-
-    this.businessCardsService.deleteBusinessCard(row.id).subscribe({
-      next: (res) => {
-        this.getBusinessCards();
+    this.dialog.open(DialogComponent, {
+      width: '70vh',
+      maxWidth: 'xl',
+      height: '35%',
+      data: row,
+      id: row.id
+    }).afterClosed().subscribe(val => {
+      if (val == "delete") {
+        this.businessCardsService.deleteBusinessCard(row.id).subscribe({
+          next: (res) => {
+            this.getBusinessCards();
+          }
+        })
       }
-    })
+    });
+
   }
   generateQr(row: any) {
 
     this.businessCardsService.generateQr(row.id).subscribe((blob) => {
-      this.downloadBlob(blob, `${row.name}.png`);
+      this.downloadBlob(blob, `${row.name}-Qr.png`);
     })
   }
   exportToExcel() {

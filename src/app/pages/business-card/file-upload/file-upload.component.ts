@@ -175,6 +175,7 @@ export class FileUploadComponent {
           duration: 5000
         });
         this.remove();  // Reset the file list after successful upload
+
         this.dialogRef.close();
       },
       error => {

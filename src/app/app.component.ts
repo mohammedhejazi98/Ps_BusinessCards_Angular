@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'Spike Angular Admin Tempplate';
+  title = 'Ps_BusinessCards_Angular';
 }

@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>{{title}}</h1>
-<div mat-dialog-content>
+<h1 *ngIf="!showDeleteDialog" mat-dialog-title>{{title}}</h1>
+<div *ngIf="!showDeleteDialog" mat-dialog-content>
 
-  <form [formGroup]="userForm">
+  <form [formGroup]="bsCardForm">
     <div>
 
       <mat-form-field style="margin-top:5px ;" appearance="outline">
@@ -48,7 +48,7 @@
     {{imageSrc?fileName : "No file uploaded yet."}}
 
     <div style="margin-top: 20px;" class="file-upload">
-      <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+      <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
 
       <button mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
@@ -64,9 +64,28 @@
     </div>
 
     <div *ngIf="loaded" mat-dialog-action [align]="'end'">
-      <button (click)="addUser()" mat-raised-button color="warn">{{actionBtn}}</button>
+      <button (click)="addBusinessCard()" mat-raised-button color="warn">{{actionBtn}}</button>
       <button mat-raised-button style="margin-left: 8px;" color="primary" mat-dialog-close>close</button>
     </div>
 
   </form>
+</div>
+
+
+<div *ngIf="showDeleteDialog">
+  <html lang="en">
+
+    <body style="font-family: Arial, sans-serif; text-align: center; padding-top: 50px;">
+      <h2>Delete <span>{{title}}</span></h2>
+      <p style="font-size: 16px;">Are you sure you want to delete?</p>
+      <div style="margin-top: 20px;">
+        <button mat-raised-button style="background-color: rgb(252, 74, 74); color: white;"
+          (click)="deleteBusinesscard('delete')">Delete</button>
+        <button mat-raised-button (click)="deleteBusinesscard('close')" style="margin-left: 8px;" color="primary"
+          mat-dialog-close>close</button>
+
+      </div>
+    </body>
+
+  </html>
 </div>
